@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<title>名前＋長めの組み合わせ苦情・または感動</title>
+<style>
+  body { font-family: Arial, sans-serif; padding: 20px; }
+  input[type="text"] { width: 300px; padding: 8px; font-size: 16px; }
+  button { margin-left: 10px; padding: 8px 16px; font-size: 16px; }
+  #complaint { margin-top: 20px; font-weight: bold; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+  <h1>名前に応じて長めの苦情または感動的な言葉を返す</h1>
+  <p>名前を入力して「苦情を言う」ボタンを押してください。</p>
+  <input type="text" id="nameInput" placeholder="名前を入力" />
+  <button onclick="complain()">苦情を言う</button>
+
+  <div id="complaint"></div>
+
+  <script>
+    const praiseMessages = [
+      "その名前…とても美しい響きですね。",
+      "むすぶ…なんて深い意味を持つ名前なんだろう。",
+      "名前に込められた思いが伝わってきます。素晴らしいです。",
+      "その名を聞くだけで心が温まります。",
+      "優しさと強さを感じさせる名前ですね。感動しました。",
+      "あなたの名前、大切な何かを“結ぶ”ような力を感じます。",
+      "この時代にそんな名前…本当に素敵です。",
+      "むぶという響き、どこか懐かしくてやさしい。感動しました。"
+    ];
+
+    const part1 = [
+      "正直言って", "本当に", "何度も言うけど", "どうしても", "正直なところ", "本気で", "絶対に", "個人的に思うんだけど"
+    ];
+    const part2 = [
+      "その名前は", "君の名前は", "そんな名前は", "あなたの名前は", "あの名前は", "そのネーミングは", "その呼び名は", "あなたのネームは"
+    ];
+    const part3 = [
+      "かなり変だし", "めちゃくちゃダサいし", "正直覚えにくいし", "とても珍しいし", "かなり微妙だし", "おかしいし", "とても謎だし", "本当に最悪だし"
+    ];
+    const part4 = [
+      "周りの人も戸惑っているよ。", "みんなに笑われるかもしれないよ。", "将来が心配になってくるよ。", "なぜそんな名前にしたの？", "ちゃんと考えたの？", "説明できる？", "本気で言ってるの？", "誰が付けたの？"
+    ];
+    const part5 = [
+      "こんな名前じゃ人生大変だよ。", "それじゃ恥ずかしいよ。", "真剣に変えたほうがいいよ。", "そんな名前じゃ損するよ。", "いい加減にしたほうがいいよ。", "みんなが理解できないよ。", "正直見ていて辛いよ。", "もう少しまともな名前にしてよ。"
+    ];
+    const part6 = [
+      "本当に君のことを思って言ってるんだ。", "でも正直に言うとね。", "心配だから言ってるんだ。", "これ以上恥かかないようにね。", "もう少し考え直したほうがいい。", "自分のためにもね。", "将来のためにもね。", "そんな名前じゃ応援できないよ。"
+    ];
+    const part7 = [
+      "だからお願い、改名を検討して。", "もう少し普通にしてほしい。", "その名前は絶対にダメだよ。", "これ以上恥をかくなよ。", "真剣に考えてほしい。", "誰かに相談してみて。", "変わるチャンスはまだあるよ。", "諦めずに頑張ってね。"
+    ];
+
+    function complain() {
+      const name = document.getElementById("nameInput").value.trim();
+      const complaintDiv = document.getElementById("complaint");
+
+      if (!name) {
+        complaintDiv.textContent = "名前をちゃんと入力してください！";
+        complaintDiv.style.color = "black";
+        return;
+      }
+
+      const lowerName = name.toLowerCase();
+      if (lowerName.includes("むすぶ") || lowerName.includes("むぶ") || lowerName.includes("musubu") || lowerName.includes("mubu")) {
+        const praise = praiseMessages[Math.floor(Math.random() * praiseMessages.length)];
+        complaintDiv.textContent = `${name}？ ${praise}`;
+        complaintDiv.style.color = "darkgreen";
+      } else {
+        const p1 = part1[Math.floor(Math.random() * part1.length)];
+        const p2 = part2[Math.floor(Math.random() * part2.length)];
+        const p3 = part3[Math.floor(Math.random() * part3.length)];
+        const p4 = part4[Math.floor(Math.random() * part4.length)];
+        const p5 = part5[Math.floor(Math.random() * part5.length)];
+        const p6 = part6[Math.floor(Math.random() * part6.length)];
+        const p7 = part7[Math.floor(Math.random() * part7.length)];
+
+        complaintDiv.textContent = `${name}？${p1} ${p2} ${p3} ${p4} ${p5} ${p6} ${p7}`;
+        complaintDiv.style.color = "darkred";
+      }
+    }
+  </script>
+</body>
+</html>
